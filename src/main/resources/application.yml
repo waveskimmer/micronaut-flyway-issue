@@ -1,0 +1,22 @@
+micronaut:
+  application:
+    name: flyway-example
+
+datasources:
+  default:
+    url: jdbc:postgresql://postgres:5432/postgres_local
+    username: postgres
+    password: Password1!
+    dialect: POSTGRES
+    poolName: flyway_example
+    schema: flyway_example
+    minPoolSize: 1
+    maxPoolSize: 2
+    driverClassName: org.postgresql.Driver
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+  postgresql:
+    transactional.lock: false

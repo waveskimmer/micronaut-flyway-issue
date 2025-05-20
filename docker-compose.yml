@@ -1,0 +1,17 @@
+services:
+  postgres:
+    container_name: postgres_local
+    image: 'hub.docker.target.com/postgres:15'
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres_local
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Password1!
+    networks:
+      - app
+    volumes:
+      - ${PWD}/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+networks:
+  app:
