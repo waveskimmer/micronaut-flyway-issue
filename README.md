@@ -12,3 +12,9 @@ And, this fix works as exemplified by the flyway scripts V1.00 and V1.01.   If y
 ```
 from the `application.yml`, it will fail to run.   However, even with this setting, it will fail on V1.02 and V1.03 with a partitioned table. 
 
+### Running ###
+
+```
+$ docker-compose up -d
+$ ./gradlew run
+```
