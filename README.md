@@ -1,50 +1,14 @@
-## Micronaut 4.8.2 Documentation
+## Micronaut 4.8.2 Flyway Issue - Create index Concurrently 
 
-- [User Guide](https://docs.micronaut.io/4.8.2/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.8.2/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.8.2/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+This is a common issue when upgrading, and the usual way to solve it is discussed here: 
 
-- [Shadow Gradle Plugin](https://gradleup.com/shadow/)
-- [Micronaut Gradle Plugin documentation](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/)
-- [GraalVM Gradle Plugin documentation](https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html)
-## Feature serialization-jackson documentation
+https://documentation.red-gate.com/fd/config-files-parameter-277578859.html
 
-- [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
+And, this fix works as exemplified by the flyway scripts V1.00 and V1.01.   If you remove the: 
 
-
-## Feature flyway documentation
-
-- [Micronaut Flyway Database Migration documentation](https://micronaut-projects.github.io/micronaut-flyway/latest/guide/index.html)
-
-- [https://flywaydb.org/](https://flywaydb.org/)
-
-
-## Feature jdbc-hikari documentation
-
-- [Micronaut Hikari JDBC Connection Pool documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#jdbc)
-
-
-## Feature data-jdbc documentation
-
-- [Micronaut Data JDBC documentation](https://micronaut-projects.github.io/micronaut-data/latest/guide/index.html#jdbc)
-
-
-## Feature test-resources documentation
-
-- [Micronaut Test Resources documentation](https://micronaut-projects.github.io/micronaut-test-resources/latest/guide/)
-
-
-## Feature micronaut-aot documentation
-
-- [Micronaut AOT documentation](https://micronaut-projects.github.io/micronaut-aot/latest/guide/)
-
-
-## Feature ksp documentation
-
-- [Micronaut Kotlin Symbol Processing (KSP) documentation](https://docs.micronaut.io/latest/guide/#kotlin)
-
-- [https://kotlinlang.org/docs/ksp-overview.html](https://kotlinlang.org/docs/ksp-overview.html)
-
+```
+  postgresql:
+    transactional.lock: false
+```
+from the `application.yml`, it will fail to run.   However, even with this setting, it will fail on V1.02 and V1.03 with a partitioned table. 
 
